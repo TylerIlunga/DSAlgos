@@ -1,6 +1,6 @@
 const twoSum = (array, sum) => {
   const pairs = [],
-        hashTable = [];
+    hashTable = [];
 
   for (var i = 0; i < array.length; i++) {
     let currentNumber = array[i];
@@ -11,22 +11,21 @@ const twoSum = (array, sum) => {
     hashTable.push(currentNumber);
   }
   return pairs;
-}
+};
 
-const result = twoSum([3,2,4], 6);
+const result = twoSum([3, 2, 4], 6);
 console.log(result);
 
-
 const letterNotIncluded = (str) => {
-  let letters = str.toLowerCase().split('');
-  let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  let letters = str.toLowerCase().split("");
+  let alphabet = "abcdefghijklmnopqrstuvwxyz";
   let results = [];
   for (let letter in alphabet) {
     if (!letters.includes(alphabet[letter])) {
-      results.push(alphabet[letter])
+      results.push(alphabet[letter]);
     }
   }
   return results;
-}
+};
 
-console.log(letterNotIncluded('Hello'));
+console.log(letterNotIncluded("Hello"));

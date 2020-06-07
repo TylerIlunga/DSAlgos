@@ -1,5 +1,5 @@
 const makeAPalindrome = (string) => {
-  string = string.split('');
+  string = string.split("");
 
   for (var i = 0; i < string.length / 2; i++) {
     if (string[i] !== string[string.length - 1 - i]) {
@@ -7,7 +7,7 @@ const makeAPalindrome = (string) => {
     }
   }
 
-  return string.join('');
-}
+  return string.join("");
+};
 
-console.log(makeAPalindrome('cara'));
+console.log(makeAPalindrome("cara"));

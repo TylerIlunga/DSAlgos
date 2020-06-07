@@ -34,13 +34,10 @@ public class MergeSort {
             // Compare the left and right half and copy back the smaller element from the
             // two halves into the given array(original).
             if (helper[helperLeftIndex] <= helper[helperRightIndex]) {
-                array[current] = helper[helperLeftIndex];
-                helperLeftIndex++;
+                array[current++] = helper[helperLeftIndex++];
             } else {
-                array[current] = helper[helperRightIndex];
-                helperRightIndex++;
+                array[current++] = helper[helperRightIndex++];
             }
-            current++;
         }
 
         // Copy the rest of the left side of the helper array into the given array;

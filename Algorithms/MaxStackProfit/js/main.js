@@ -19,7 +19,7 @@ const maxStockProfit = (pricesArray) => {
   }
 
   return maxProfit;
-}
+};
 
 let stockPrices = [54.68, 53.47, 54.42, 55.70, 55.82, 55.05, 54.84];
 let output = maxStockProfit(stockPrices);

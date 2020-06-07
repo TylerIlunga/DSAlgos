@@ -38,30 +38,30 @@ public class CSPTests {
 
             boolean sat = false;
             switch (d.OP) {
-            case "==":
-                if (leftDate.isEqual(rightDate))
-                    sat = true;
-                break;
-            case "!=":
-                if (!leftDate.isEqual(rightDate))
-                    sat = true;
-                break;
-            case ">":
-                if (leftDate.isAfter(rightDate))
-                    sat = true;
-                break;
-            case "<":
-                if (leftDate.isBefore(rightDate))
-                    sat = true;
-                break;
-            case ">=":
-                if (leftDate.isAfter(rightDate) || leftDate.isEqual(rightDate))
-                    sat = true;
-                break;
-            case "<=":
-                if (leftDate.isBefore(rightDate) || leftDate.isEqual(rightDate))
-                    sat = true;
-                break;
+                case "==":
+                    if (leftDate.isEqual(rightDate))
+                        sat = true;
+                    break;
+                case "!=":
+                    if (!leftDate.isEqual(rightDate))
+                        sat = true;
+                    break;
+                case ">":
+                    if (leftDate.isAfter(rightDate))
+                        sat = true;
+                    break;
+                case "<":
+                    if (leftDate.isBefore(rightDate))
+                        sat = true;
+                    break;
+                case ">=":
+                    if (leftDate.isAfter(rightDate) || leftDate.isEqual(rightDate))
+                        sat = true;
+                    break;
+                case "<=":
+                    if (leftDate.isBefore(rightDate) || leftDate.isEqual(rightDate))
+                        sat = true;
+                    break;
             }
             if (!sat) {
                 fail("[X] Constraint Failed: " + d);

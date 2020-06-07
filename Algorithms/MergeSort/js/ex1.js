@@ -5,7 +5,7 @@ const mergeSort = (array) => {
   let secondHalf = array.slice(middleIndex);
 
   return merge(mergeSort(firstHalf), mergeSort(secondHalf));
-}
+};
 
 const merge = (array1, array2) => {
   let result = [];
@@ -26,7 +26,7 @@ const merge = (array1, array2) => {
   }
 
   return result;
-}
+};
 
 let arrayOfNumbers = [1, 8, 6, 4, 2, 9, 10, 0, 23];
 let output = mergeSort(arrayOfNumbers);

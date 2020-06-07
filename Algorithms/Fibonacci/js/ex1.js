@@ -10,7 +10,7 @@ const fibonacci = (index, cache) => {
     }
   }
   return cache[index];
-}
+};
 
 let result = fibonacci(40);
 console.log(result);

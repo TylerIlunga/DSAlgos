@@ -1,14 +1,14 @@
-const Alphabet = require('alphabet');
+const Alphabet = require("alphabet");
 
 const cc = (s, n) => {
   n = n % 26;
   let lowerCaseStr = s.toLowerCase();
   let a = Alphabet.lower;
-  let newStr = '';
+  let newStr = "";
 
   for (var i = 0; i < lowerCaseStr.length; i++) {
     let currentStr = lowerCaseStr[i];
-    if (currentStr === ' ') {
+    if (currentStr === " ") {
       newStr += currentStr;
       continue;
     }
@@ -27,6 +27,6 @@ const cc = (s, n) => {
     }
   }
   return newStr;
-}
+};
 
-console.log(cc('Zoo Keeper', 2));
+console.log(cc("Zoo Keeper", 2));

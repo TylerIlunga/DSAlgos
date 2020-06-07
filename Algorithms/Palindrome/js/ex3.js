@@ -1,5 +1,5 @@
 const palindrome = (string) => {
-  let charArray = string.split(' ');
+  let charArray = string.split(" ");
 
   for (var i = 0; i < charArray.length / 2; i++) {
     if (charArray[i] !== charArray[charArray.length - 1 - i]) {
@@ -7,7 +7,7 @@ const palindrome = (string) => {
     }
   }
 
-  return charArray.join('')
-}
+  return charArray.join("");
+};
 
-console.log(palindrome('aba'));
+console.log(palindrome("aba"));

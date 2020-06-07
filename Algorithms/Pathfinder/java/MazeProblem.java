@@ -65,22 +65,22 @@ public class MazeProblem {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 switch (maze[row].charAt(col)) {
-                case 'I':
-                    foundInitial = new MazeState(col, row);
-                    break;
-                case 'G':
-                    foundGoals.add(new MazeState(col, row));
-                    break;
-                case 'K':
-                    foundKey = new MazeState(col, row);
-                    foundKeys.add(foundKey);
-                    break;
-                case '.':
-                case 'X':
-                case 'M':
-                    break;
-                default:
-                    throw new IllegalArgumentException("Maze formatted invalidly");
+                    case 'I':
+                        foundInitial = new MazeState(col, row);
+                        break;
+                    case 'G':
+                        foundGoals.add(new MazeState(col, row));
+                        break;
+                    case 'K':
+                        foundKey = new MazeState(col, row);
+                        foundKeys.add(foundKey);
+                        break;
+                    case '.':
+                    case 'X':
+                    case 'M':
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Maze formatted invalidly");
                 }
             }
         }
@@ -161,10 +161,10 @@ public class MazeProblem {
      */
     public int getCost(MazeState state) {
         switch (maze[state.row].charAt(state.col)) {
-        case 'M':
-            return 3;
-        default:
-            return 1;
+            case 'M':
+                return 3;
+            default:
+                return 1;
         }
     }
 
@@ -193,11 +193,11 @@ public class MazeProblem {
             MazeState actionMod = TRANS_MAP.get(action);
             movingState.add(actionMod);
             switch (maze[movingState.row].charAt(movingState.col)) {
-            case 'X':
-                return result;
-            case 'K':
-                hasKey = true;
-                break;
+                case 'X':
+                    return result;
+                case 'K':
+                    hasKey = true;
+                    break;
             }
             cost += getCost(movingState);
         }

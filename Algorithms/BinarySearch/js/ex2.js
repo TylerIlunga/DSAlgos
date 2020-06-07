@@ -11,7 +11,7 @@ const binarySearch = (array, key) => {
   } else {
     return false;
   }
-}
+};
 
 let output = binarySearch([50, 67, 89, 200, 305], 67);
 console.log(output);

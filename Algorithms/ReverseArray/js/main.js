@@ -6,6 +6,6 @@ const reverseArrayInPlace = (array) => {
   }
 
   return array;
-}
+};
 
 console.log(reverseArrayInPlace([1, 23, 234, 353]));

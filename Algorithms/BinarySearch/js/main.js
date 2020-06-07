@@ -11,9 +11,9 @@ const binarySearch = (array, key) => {
   } else {
     return false;
   }
-}
+};
 
-let testArray = [5, 7, 12, 16, 36, 39, 42, 56, 71]
+let testArray = [5, 7, 12, 16, 36, 39, 42, 56, 71];
 
 let result = binarySearch(testArray, 56);
 console.log(result);

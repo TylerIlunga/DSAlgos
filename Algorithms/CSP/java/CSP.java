@@ -71,30 +71,30 @@ public class CSP {
     private static boolean isValidConstraint(LocalDate leftDate, DateConstraint constraint, LocalDate rightDate) {
         boolean isValid = false;
         switch (constraint.OP) {
-        case "==":
-            if (leftDate.isEqual(rightDate))
-                isValid = true;
-            break;
-        case "!=":
-            if (!leftDate.isEqual(rightDate))
-                isValid = true;
-            break;
-        case ">":
-            if (leftDate.isAfter(rightDate))
-                isValid = true;
-            break;
-        case "<":
-            if (leftDate.isBefore(rightDate))
-                isValid = true;
-            break;
-        case ">=":
-            if (leftDate.isAfter(rightDate) || leftDate.isEqual(rightDate))
-                isValid = true;
-            break;
-        case "<=":
-            if (leftDate.isBefore(rightDate) || leftDate.isEqual(rightDate))
-                isValid = true;
-            break;
+            case "==":
+                if (leftDate.isEqual(rightDate))
+                    isValid = true;
+                break;
+            case "!=":
+                if (!leftDate.isEqual(rightDate))
+                    isValid = true;
+                break;
+            case ">":
+                if (leftDate.isAfter(rightDate))
+                    isValid = true;
+                break;
+            case "<":
+                if (leftDate.isBefore(rightDate))
+                    isValid = true;
+                break;
+            case ">=":
+                if (leftDate.isAfter(rightDate) || leftDate.isEqual(rightDate))
+                    isValid = true;
+                break;
+            case "<=":
+                if (leftDate.isBefore(rightDate) || leftDate.isEqual(rightDate))
+                    isValid = true;
+                break;
         }
         return isValid;
     }
@@ -146,30 +146,30 @@ public class CSP {
                 continue;
             }
             switch (constraint.OP) {
-            case "==":
-                if (leftDate.isEqual(rightDate))
-                    isValid = true;
-                break;
-            case "!=":
-                if (!leftDate.isEqual(rightDate))
-                    isValid = true;
-                break;
-            case ">":
-                if (leftDate.isAfter(rightDate))
-                    isValid = true;
-                break;
-            case "<":
-                if (leftDate.isBefore(rightDate))
-                    isValid = true;
-                break;
-            case ">=":
-                if (leftDate.isAfter(rightDate) || leftDate.isEqual(rightDate))
-                    isValid = true;
-                break;
-            case "<=":
-                if (leftDate.isBefore(rightDate) || leftDate.isEqual(rightDate))
-                    isValid = true;
-                break;
+                case "==":
+                    if (leftDate.isEqual(rightDate))
+                        isValid = true;
+                    break;
+                case "!=":
+                    if (!leftDate.isEqual(rightDate))
+                        isValid = true;
+                    break;
+                case ">":
+                    if (leftDate.isAfter(rightDate))
+                        isValid = true;
+                    break;
+                case "<":
+                    if (leftDate.isBefore(rightDate))
+                        isValid = true;
+                    break;
+                case ">=":
+                    if (leftDate.isAfter(rightDate) || leftDate.isEqual(rightDate))
+                        isValid = true;
+                    break;
+                case "<=":
+                    if (leftDate.isBefore(rightDate) || leftDate.isEqual(rightDate))
+                        isValid = true;
+                    break;
             }
             if (!isValid) {
                 return false;
