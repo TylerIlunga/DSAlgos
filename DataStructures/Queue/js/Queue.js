@@ -3,7 +3,7 @@
  */
 
 class Queue {
-  constructor(dataType = 'null') {
+  constructor(dataType = "null") {
     this.isValidType(dataType);
     this.dataType = dataType;
     this.length = 0;
@@ -18,12 +18,12 @@ class Queue {
    */
   isValidType(object) {
     const validDataTypes = [
-      'number',
-      'boolean',
-      'string',
-      'symbol',
-      'function',
-      'object',
+      "number",
+      "boolean",
+      "string",
+      "symbol",
+      "function",
+      "object",
     ];
     if (!validDataTypes.includes(object)) {
       throw new Error(
@@ -87,7 +87,7 @@ class Queue {
   enableLogging() {
     if (this.logging) return;
     this.logging = true;
-    console.log('enabled.');
+    console.log("enabled.");
   }
 
   /**
@@ -96,7 +96,7 @@ class Queue {
   disableLogging() {
     if (!this.logging) return;
     this.logging = false;
-    console.log('disabled.');
+    console.log("disabled.");
   }
 
   /**

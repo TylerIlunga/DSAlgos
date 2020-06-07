@@ -1,6 +1,5 @@
-//Used for rapid data lookup
-//Constant time (O(1)) insertion
-//Constant time (O(1)) lookup
+// Constant time (O(1)) insertion
+// Constant time (O(1)) lookup w/ no collisions else O(N)
 
 class HashTable {
   constructor(size) {
@@ -8,7 +7,6 @@ class HashTable {
     this.numberOfBuckets = this.buckets.length;
   }
 }
-
 
 class HashNode {
   constructor(key, value, next) {
@@ -31,7 +29,7 @@ HashTable.prototype.insert = function (key, value) {
   var index = this.hash(key);
   //console.log(`Index for ${key}: [${index}]`);
   if (!this.buckets[index]) {
-    this.buckets[index] = new HashNode(key, value)
+    this.buckets[index] = new HashNode(key, value);
   } else if (this.buckets[index].key === key) {
     this.buckets[index].value = value;
   } else {
@@ -43,7 +41,7 @@ HashTable.prototype.insert = function (key, value) {
       }
       currentNode = currentNode.next;
     }
-    currentNode.next = new HashNode(key, value)
+    currentNode.next = new HashNode(key, value);
   }
 };
 
@@ -55,7 +53,7 @@ HashTable.prototype.get = function (key) {
     let currentNode = this.buckets[index];
     while (currentNode) {
       if (currentNode.key === key) {
-        return currentNode.value
+        return currentNode.value;
       }
       currentNode = currentNode.next;
     }
@@ -77,16 +75,14 @@ HashTable.prototype.retrieveAll = function () {
 };
 
 let ht = new HashTable(30);
-let h = ht.hash('tyler');
+let h = ht.hash("tyler");
 console.log(h);
-ht.insert('Tyler', 'tilunga@lion.lmu.edu');
-ht.insert('Yehuda', 'yehuda@gmail.com');
-ht.insert('Coltrane', 'cole@gmail.com');
-ht.insert('Kyle', 'ky@gmail.com');
-ht.insert('Dean', 'dean@gmail.com');
-ht.insert('Dane', 'dane@gmail.com');
-ht.insert('Kyle', 'kyle@gmail.com');
-ht.insert('Dean', 'dean123@gmail.com');
+ht.insert("Tyler", "tilunga@lion.lmu.edu");
+ht.insert("Kyle", "ky@gmail.com");
+ht.insert("Dean", "dean@gmail.com");
+ht.insert("Dane", "dane@gmail.com");
+ht.insert("Kyle", "kyle@gmail.com");
+ht.insert("Dean", "dean123@gmail.com");
 console.log(ht.buckets);
-console.log(ht.get('Kyle'));
+console.log(ht.get("Kyle"));
 console.log(ht.retrieveAll());

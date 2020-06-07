@@ -13,7 +13,7 @@ class Stack {
   }
 
   isValidType(object) {
-    if (typeof object === 'undefined' || typeof object === null) {
+    if (typeof object === "undefined" || typeof object === null) {
       throw new Error(`Invalid data type: ${typeof dataType}`);
     }
   }
@@ -66,7 +66,7 @@ class Stack {
   enableLogging() {
     if (this.logging) return;
     this.logging = true;
-    console.log('enabled.');
+    console.log("enabled.");
   }
 
   /**
@@ -75,7 +75,7 @@ class Stack {
   disableLogging() {
     if (!this.logging) return;
     this.logging = false;
-    console.log('disabled.');
+    console.log("disabled.");
   }
 
   printStack() {

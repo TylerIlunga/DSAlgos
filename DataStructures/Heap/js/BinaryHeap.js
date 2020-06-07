@@ -14,14 +14,14 @@ class BinaryHeap {
    * @param {Any} object
    */
   isValidType(object) {
-    if (typeof object === 'undefined' || typeof object === null) {
+    if (typeof object === "undefined" || typeof object === null) {
       throw new Error(`Invalid data type: ${typeof dataType}`);
     }
   }
 
   isValidIndex(index) {
     if (index < 0 || index > this.heap.length - 1) {
-      throw new Error('Invalid index');
+      throw new Error("Invalid index");
     }
   }
 
@@ -74,10 +74,10 @@ class BinaryHeap {
     // Handle all varients.
     console.log(parent, child);
     if (typeof parent !== typeof child) {
-      throw new Error('Parent and child must have the same type.');
+      throw new Error("Parent and child must have the same type.");
     }
     switch (typeof parent) {
-      case 'number':
+      case "number":
         return parent < child;
     }
   }
@@ -129,7 +129,7 @@ class BinaryHeap {
   enableLogging() {
     if (this.logging) return;
     this.logging = true;
-    console.log('enabled.');
+    console.log("enabled.");
   }
 
   /**
@@ -138,7 +138,7 @@ class BinaryHeap {
   disableLogging() {
     if (!this.logging) return;
     this.logging = false;
-    console.log('disabled.');
+    console.log("disabled.");
   }
 
   /**

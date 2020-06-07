@@ -1,16 +1,9 @@
-// Array
-// 1) PUSH
-// 2) POP
-// 3) Pointers
-// 4) Search(linear, log)
-// 5) Sorting (Merge Sort, Quick Sort)
-
-class ArrayStructure {
+class ArrayDS {
     private static int LENGTH;
     private static int size;
     private static int[] nums;
 
-    ArrayStructure(int l) {
+    ArrayDS(int l) {
         LENGTH = l;
         size = 0;
         nums = new int[LENGTH];
@@ -87,24 +80,6 @@ class ArrayStructure {
     public int getLength() {
         return LENGTH;
     }
-
-    public int binarySearch(int key) {
-        return 0;
-    }
-
-    public void mergeSort() {
-
-    }
-
-    public void mergeSort(int[] diff) {
-    }
-
-    public void quickSort() {
-
-    }
-
-    public void quickSort(int[] diff) {
-    }
 }
 
 public class Array {
@@ -113,7 +88,7 @@ public class Array {
     }
 
     public static void main(String[] args) {
-        ArrayStructure arr = new ArrayStructure(2);
+        ArrayDS arr = new ArrayDS(2);
         arr.push(1);
         arr.push(2);
         arr.push(3);

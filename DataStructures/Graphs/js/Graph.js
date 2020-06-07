@@ -1,6 +1,6 @@
-const Queue = require('../../Queue/js/Queue');
-const PriorityQueue = require('../../PriorityQueue/js/PriorityQueue');
-const Stack = require('../../Stack/js/Stack');
+const Queue = require("../../Queue/js/Queue");
+const PriorityQueue = require("../../PriorityQueue/js/PriorityQueue");
+const Stack = require("../../Stack/js/Stack");
 
 /**
  * Graph Data Structure
@@ -23,12 +23,12 @@ class Graph {
    */
   isValidType(object) {
     const validDataTypes = [
-      'number',
-      'boolean',
-      'string',
-      'symbol',
-      'function',
-      'object',
+      "number",
+      "boolean",
+      "string",
+      "symbol",
+      "function",
+      "object",
     ];
     if (!validDataTypes.includes(object)) {
       throw new Error(
@@ -43,7 +43,7 @@ class Graph {
    */
   addNode(node) {
     if (typeof node.node !== this.dataType) {
-      throw new Error('Nodes must match data type:', this.dataType);
+      throw new Error("Nodes must match data type:", this.dataType);
     }
     this.nodes.push(node);
     this.edges[node] = [];
@@ -57,7 +57,7 @@ class Graph {
    */
   matchesAssignedDataType(fromNode, toNode = null) {
     if (!fromNode || (toNode && !(fromNode && toNode))) {
-      throw new Error('Node(s) can not be null');
+      throw new Error("Node(s) can not be null");
     }
     return fromNode && toNode
       ? typeof fromNode === this.dataType && typeof toNode === this.dataType
@@ -75,10 +75,10 @@ class Graph {
       throw new Error("A 'From' node and 'To' node is required.");
     }
     if (!this.matchesAssignedDataType(fromNode.node, toNode.node)) {
-      throw new Error('Nodes must match data type:', this.dataType);
+      throw new Error("Nodes must match data type:", this.dataType);
     }
     if (!directed && fromNode === toNode) {
-      throw new Error('From and To node are the same');
+      throw new Error("From and To node are the same");
     }
     // if (!directed && !this.nodes.includes(fromNode)) {
     //   throw new Error('One node(or both) does not exist within the graph');
@@ -96,7 +96,7 @@ class Graph {
    */
   addEdge(fromNode, toNode, weight = 1) {
     if (this.isDAG) {
-      throw new Error('This graph is a DAG.');
+      throw new Error("This graph is a DAG.");
     }
     this.validEdges(fromNode, toNode, false);
     this.edges[fromNode].push(toNode);
@@ -112,7 +112,7 @@ class Graph {
    */
   addDirectedEdge(fromNode, toNode, weight = 1) {
     if (!this.isDAG) {
-      throw new Error('This graph is not a DAG.');
+      throw new Error("This graph is not a DAG.");
     }
     this.validEdges(fromNode, toNode, true);
     this.edges[fromNode].push({ node: toNode, weight });
@@ -123,7 +123,7 @@ class Graph {
    * DFS (Depth First Search)
    */
   DFS() {
-    let stackFrontier = new Stack('object');
+    let stackFrontier = new Stack("object");
     let visited = new Set();
     stackFrontier.push(this.nodes[0]);
     stackFrontier.disableLogging();
@@ -131,8 +131,8 @@ class Graph {
       const currentNode = stackFrontier.pop();
       if (!visited.has(currentNode)) {
         visited.add(currentNode);
-        console.log('Node: ', currentNode);
-        this.edges[currentNode].forEach(neighbor => {
+        console.log("Node: ", currentNode);
+        this.edges[currentNode].forEach((neighbor) => {
           stackFrontier.push(neighbor);
         });
       }
@@ -143,7 +143,7 @@ class Graph {
    * BFS (Breadth First Search)
    */
   BFS() {
-    let queueFrontier = new Queue('object');
+    let queueFrontier = new Queue("object");
     let visited = new Set();
     queueFrontier.enqueue(this.nodes[0]);
     queueFrontier.disableLogging();
@@ -151,8 +151,8 @@ class Graph {
       const currentNode = queueFrontier.dequeue();
       if (!visited.has(currentNode)) {
         visited.add(currentNode);
-        console.log('Node: ', currentNode);
-        this.edges[currentNode].forEach(neighbor => {
+        console.log("Node: ", currentNode);
+        this.edges[currentNode].forEach((neighbor) => {
           queueFrontier.enqueue(neighbor);
         });
       }
@@ -167,7 +167,7 @@ class Graph {
    */
   tsHelper(node, explored, queue) {
     explored.add(node);
-    this.edges[node].forEach(neighbor => {
+    this.edges[node].forEach((neighbor) => {
       if (!explored.has(neighbor)) {
         this.tsHelper(neighbor, explored, queue);
       }
@@ -181,19 +181,19 @@ class Graph {
   topologicialSort() {
     if (!this.isDAG) {
       throw new Error(
-        'The Topological Sort operation can only occur on Directed Graph Types.',
+        "The Topological Sort operation can only occur on Directed Graph Types.",
       );
     }
-    const queue = new Queue('object');
+    const queue = new Queue("object");
     const explored = new Set();
     queue.disableLogging();
-    this.nodes.forEach(node => {
+    this.nodes.forEach((node) => {
       if (!explored.has(node)) {
         this.tsHelper(node, explored, queue);
       }
     });
     while (!queue.isEmpty()) {
-      console.log('Node: ', queue.dequeue().node);
+      console.log("Node: ", queue.dequeue().node);
     }
   }
 
@@ -203,7 +203,7 @@ class Graph {
   enableLogging() {
     if (this.logging) return;
     this.logging = true;
-    console.log('enabled.');
+    console.log("enabled.");
   }
 
   /**
@@ -212,7 +212,7 @@ class Graph {
   disableLogging() {
     if (!this.logging) return;
     this.logging = false;
-    console.log('disabled.');
+    console.log("disabled.");
   }
 
   /**
@@ -220,14 +220,14 @@ class Graph {
    */
   printGraph() {
     if (!this.logging) return;
-    console.log('Graph:');
+    console.log("Graph:");
     if (this.nodes.length === 0) {
-      return console.log('\tNo Nodes.');
+      return console.log("\tNo Nodes.");
     }
     this.nodes.forEach((node, nIndex) => {
       console.log(`\tNode ${nIndex}:`);
       if (this.edges[node] && this.edges.length === 0) {
-        return console.log('\t\tNo Edges.');
+        return console.log("\t\tNo Edges.");
       }
       if (this.edges[node]) {
         this.edges[node].forEach((neighbor, nIndex) => {
@@ -239,39 +239,39 @@ class Graph {
 }
 
 let f1 = {
-  node: (() => 'f1()')(),
+  node: (() => "f1()")(),
   weight: 1,
 };
 let f2 = {
-  node: (() => 'f2()')(),
+  node: (() => "f2()")(),
   weight: 1,
 };
 let f3 = {
-  node: (() => 'f3()')(),
+  node: (() => "f3()")(),
   weight: 1,
 };
 let f4 = {
-  node: (() => 'f4()')(),
+  node: (() => "f4()")(),
   weight: 1,
 };
 let f5 = {
-  node: (() => 'f5()')(),
+  node: (() => "f5()")(),
   weight: 1,
 };
 let f6 = {
-  node: (() => 'f6()')(),
+  node: (() => "f6()")(),
   weight: 1,
 };
 let f7 = {
-  node: (() => 'f7()')(),
+  node: (() => "f7()")(),
   weight: 1,
 };
 let f8 = {
-  node: (() => 'f8()')(),
+  node: (() => "f8()")(),
   weight: 1,
 };
 
-let g = new Graph('string', true);
+let g = new Graph("string", true);
 g.addNode(f1);
 g.addNode(f2);
 g.addNode(f3);

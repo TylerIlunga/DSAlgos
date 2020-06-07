@@ -1,35 +1,48 @@
-// Queue [FILO]
-// 1) PUSH/ENQUEUE()
-// 2) POP/DEQUEUE()
-// 3) Peek/OFFER()
+// Queue [LIFO]
 
-class QueueStructure {
-    ArrayStructure stack;
-
-    QueueStructure(int l) {
-        stack = new ArrayStructure(l);
-    }
-
-    public void enqueue(int value) {
-        stack.push(value);
-    }
-
-    public int dequeue() {
-        return stack.unshift();
-    }
-
-    public int peek(int value) {
-        return stack.get(stack.getSize());
-    }
-}
+import java.util.ArrayList;
+import java.util.List;
 
 class Queue {
-    private static void print(int i) {
-        System.out.println(i);
+    static class QueueStructure {
+        List<Integer> stack;
+
+        QueueStructure() {
+            stack = new ArrayList<>();
+        }
+
+        public void enqueue(int value) {
+            stack.add(value);
+        }
+
+        public int dequeue() {
+            return stack.remove(0);
+        }
+
+        public int peek(int value) {
+            return stack.get(0);
+        }
+
+        public boolean isEmpty() {
+            return stack.size() == 0;
+        }
+    }
+
+    private static void print(int v) {
+        System.out.println(String.format("Value: %d", v));
     }
 
     public static void main(String[] args) {
-        QueueStructure queue = new QueueStructure(69);
+        QueueStructure queue = new QueueStructure();
+        int[] nums = { 8, 129, 320, 3, 2, 392382, 32, 21, 832, 2321, 32012, 13, 242, 3982, 32302, 2183, 8, 12, 32, 333,
+                222, 682, 35, 3843, };
 
+        for (int num : nums) {
+            queue.enqueue(num);
+        }
+
+        while (!queue.isEmpty()) {
+            print(queue.dequeue());
+        }
     }
 }
