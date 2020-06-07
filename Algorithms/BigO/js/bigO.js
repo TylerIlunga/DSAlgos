@@ -1,37 +1,56 @@
-//Used to classify how scaleable, or functional, an algorithm is
-//Computes an algorithm runtime output depending on the size of the input
+// Used to classify how scaleable, or functional, an algorithm is
+// Computes an algorithm runtime output depending on the size of the input
 
 let a = [
-  "alpha", "beta", "charlie", "delta",
-  "echo", "foxtrot", "golf", "hotel",
-  "india", "juliet", "kilo", "mike",
-  "november", "oscar", "papa", "quebec",
-  "romeo", "sierra", "tango", "uniform",
-  "victor", "whiskey", "x-ray", "yankee", "zulu"
-]
+  "alpha",
+  "beta",
+  "charlie",
+  "delta",
+  "echo",
+  "foxtrot",
+  "golf",
+  "hotel",
+  "india",
+  "juliet",
+  "kilo",
+  "mike",
+  "november",
+  "oscar",
+  "papa",
+  "quebec",
+  "romeo",
+  "sierra",
+  "tango",
+  "uniform",
+  "victor",
+  "whiskey",
+  "x-ray",
+  "yankee",
+  "zulu",
+];
 
-//?Constant runtime: "O (1)"
+//?Constant runtime: "O(1)"
 
 const constant = (array) => {
   console.log(array[0]);
   console.log(array[1]);
-}
+};
 
-console.log('Constant:\n');
+console.log("Constant:\n");
 constant(a);
 
-//Linear runtime:  "O (n)"
+//Linear runtime:  "O n)"
 
 const linear = (array) => {
-  const logic = i => console.log(i);
+  const logic = (i) => console.log(i);
 
-  array.forEach(logic)
-}
+  array.forEach(logic);
+};
 
-console.log('\nLinear: \n');
+console.log("\nLinear: \n");
 linear(a);
 
-//Exponential runtime: "O (n^2)"
+//Exponential runtime: "O(n^2)"
 
 const exponential = (array) => {
   for (var i = 0; i < array.length; i++) {
@@ -39,12 +58,12 @@ const exponential = (array) => {
       console.log(array[i] + array[j]);
     }
   }
-}
+};
 
-console.log('\nExponential: ');
+console.log("\nExponential: ");
 exponential(a);
 
-//Logrithmic runtime: "O (log n)"
+//Logrithmic runtime: "O(log n)"
 
 const binary = (array, key) => {
   let low = 0;
@@ -62,11 +81,11 @@ const binary = (array, key) => {
       high = mid - 1;
     } else {
       console.log(`${array[mid]} was found`);
-      return
+      return;
     }
   }
 
   console.log(`${key} not found`);
-}
+};
 
-binary(a, "oscar")
+binary(a, "oscar");
