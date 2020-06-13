@@ -153,6 +153,44 @@ class LinkedList {
         public void update(int index, int data) {
             searchForNode(index).setData(data);
         }
+
+        private SingleLinkedList mergeTwoLists(SingleLLNode l1, SingleLLNode l2) {
+            if (l1 == null) {
+                return l2;
+            }
+            if (l2 == null) {
+                return l1;
+            }
+
+            SingleLLNode head = null;
+            SingleLLNode tail = null;
+
+            if (l1.data <= l2.data) {
+                head = l1;
+                tail = head;
+                l1 = l1.next;
+            } else {
+                head = l2;
+                tail = head;
+                l2 = l2.next;
+            }
+
+            while (l1 != null && l2 != null) {
+                if (l1.data <= l2.data) {
+                    tail.next = l1;
+                    tail = l1;
+                    l1 = l1.next;
+                } else {
+                    tail.next = l2;
+                    tail = l2;
+                    l2 = l2.next;
+                }
+            }
+
+            tail.next = l1 == null ? l2 : l1;
+
+            return head;
+        }
     }
 
     static class DoubleLinkedList {
