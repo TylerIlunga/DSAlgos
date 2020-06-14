@@ -154,7 +154,7 @@ class LinkedList {
             searchForNode(index).setData(data);
         }
 
-        private SingleLinkedList mergeTwoLists(SingleLLNode l1, SingleLLNode l2) {
+        private SingleLLNode mergeTwoSortedLists(SingleLLNode l1, SingleLLNode l2) {
             if (l1 == null) {
                 return l2;
             }
