@@ -1,4 +1,4 @@
-class LinkedList {
+public class LinkedList {
     static class SingleLLNode {
         private int data;
         SingleLLNode next;
@@ -37,10 +37,27 @@ class LinkedList {
         }
     }
 
+    static class SingleLLNodeIterator {
+        SingleLLNode current;
+
+        SingleLLNodeIterator(SingleLLNode head) {
+            current = head;
+        }
+
+        public SingleLLNode next() {
+            current = current == null ? current : current.next;
+            return current;
+        }
+    }
+
     static class SingleLinkedList {
         SingleLLNode head;
 
         SingleLinkedList() {
+            head = null;
+        }
+
+        public void clearList() {
             head = null;
         }
 
@@ -154,7 +171,7 @@ class LinkedList {
             searchForNode(index).setData(data);
         }
 
-        private SingleLLNode mergeTwoSortedLists(SingleLLNode l1, SingleLLNode l2) {
+        public static SingleLLNode mergeTwoLists(SingleLLNode l1, SingleLLNode l2) {
             if (l1 == null) {
                 return l2;
             }
@@ -191,6 +208,40 @@ class LinkedList {
 
             return head;
         }
+
+        public static void interleaveList(SingleLLNode llist) {
+            if (llist == null) {
+                return;
+            }
+
+            // Runner Technique
+            SingleLLNode slowP = llist;
+            SingleLLNode fastP = llist;
+            while (fastP.next != null && fastP.next.next != null) {
+                slowP = slowP.next;
+                fastP = fastP.next.next;
+            }
+
+            // Point to head of the list
+            fastP = llist;
+
+            // Interleave nodes via pointer manipulation
+            SingleLLNode slowPP = slowP.next;
+            while (slowPP != null) {
+                SingleLLNode fastPNext = fastP.next;
+                SingleLLNode slowPNext = slowPP.next;
+
+                fastP.next = slowPP;
+                slowPP.next = slowPNext == null ? slowPNext : fastPNext;
+                fastP = fastPNext;
+                slowPP = slowPNext;
+            }
+
+        }
+
+        public SingleLLNodeIterator iterator() {
+            return new SingleLLNodeIterator(head);
+        }
     }
 
     static class DoubleLinkedList {
@@ -198,6 +249,11 @@ class LinkedList {
         DoubleLLNode tail;
 
         DoubleLinkedList() {
+            head = null;
+            tail = null;
+        }
+
+        public void clearList() {
             head = null;
             tail = null;
         }
@@ -316,7 +372,7 @@ class LinkedList {
         SingleLinkedList sll = new SingleLinkedList();
         DoubleLinkedList dll = new DoubleLinkedList();
 
-        int[] values = new int[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+        int[] values = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         for (int v : values) {
             sll.add(v);
             dll.add(v);
@@ -351,5 +407,20 @@ class LinkedList {
         print("dll node at index 5: %d", dll.search(5));
         dll.update(0, 0);
         print("dll node at index 0: %d", dll.search(0));
+
+        sll.clearList();
+
+        for (int value : values) {
+            sll.add(value);
+        }
+
+        SingleLinkedList.interleaveList(sll.head);
+
+        SingleLLNodeIterator sllIterator = sll.iterator();
+        SingleLLNode current = sllIterator.current;
+        while (current != null) {
+            print("Node: %d", current.getData());
+            current = sllIterator.next();
+        }
     }
 }
