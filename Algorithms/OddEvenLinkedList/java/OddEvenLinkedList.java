@@ -63,8 +63,9 @@ public class OddEvenList {
         ListNode list2 = new ListNode();
         ListNode list3 = new ListNode();
         ListNode list4 = new ListNode();
+        ListNode list5 = new ListNode();
 
-        ListNode[] llists = new ListNode[] { list1, list2, list3, list4 };
+        ListNode[] llists = new ListNode[] { list1, list2, list3, list4, list5 };
 
         System.out.println("Before....");
         System.out.println("--------------------");
