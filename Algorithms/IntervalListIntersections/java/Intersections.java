@@ -21,11 +21,11 @@ public class Intersections {
             int currAPairEnd = A[aPairIndex][1];
             int currBPairStart = B[bPairIndex][0];
             int currBPairEnd = B[bPairIndex][1];
-            if (currAPairStart > currBPairStart && currAPairStart > currBPairEnd) {
+            if (currAPairStart > currBPairEnd) {
                 bPairIndex++;
                 continue;
             }
-            if (currAPairStart < currBPairStart && currAPairEnd < currBPairStart) {
+            if (currAPairEnd < currBPairStart) {
                 aPairIndex++;
                 continue;
             }
