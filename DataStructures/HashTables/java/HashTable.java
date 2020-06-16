@@ -32,7 +32,7 @@ public class HashTable {
         return hash;
     }
 
-    public static void insert(String key) {
+    public static void insert(String key, int data) {
         if (loadFactor() >= 0.7) {
             increaseBucketSize();
         }
@@ -43,7 +43,7 @@ public class HashTable {
             buckets[index] = new LinkedList();
         }
 
-        buckets[index].add(key);
+        buckets[index].add(key, data);
     }
 
     public static int indexOf(String key) {
@@ -52,19 +52,29 @@ public class HashTable {
             return -1;
         }
 
-        LinkedList node = buckets[index];
-        if (node.head.data == key) {
+        LinkedList list = buckets[index];
+        if (list.head.key == key) {
             return index;
         }
 
-        return node.search(key) ? index : -1;
+        return list.search(key) ? index : -1;
+    }
+
+    public static int get(String key) {
+        int index = hash(key) % buckets.length;
+        if (buckets[index] == null) {
+            return -1;
+        }
+        return buckets[index].get(key).data;
     }
 
     static class LinkedListNode {
-        String data;
+        String key;
+        int data;
         LinkedListNode next;
 
-        LinkedListNode(String d) {
+        LinkedListNode(String k, int d) {
+            key = k;
             data = d;
         }
     }
@@ -77,20 +87,24 @@ public class HashTable {
         LinkedList() {
         }
 
-        void add(String data) {
+        void add(String key, int data) {
             if (head == null) {
-                head = new LinkedListNode(data);
+                head = new LinkedListNode(key, data);
             }
 
             LinkedListNode curr = head;
             while (curr.next != null) {
+                if (curr.key == key) {
+                    curr.data = data;
+                    return;
+                }
                 curr = curr.next;
             }
 
-            curr.next = new LinkedListNode(data);
+            curr.next = new LinkedListNode(key, data);
         }
 
-        LinkedListNode get(int index) {
+        LinkedListNode nodeAtIndex(int index) {
             if (head == null) {
                 return null;
             }
@@ -104,6 +118,22 @@ public class HashTable {
             return curr == null || index > 0 ? null : curr;
         }
 
+        LinkedListNode get(String key) {
+            if (head == null) {
+                return null;
+            }
+
+            LinkedListNode curr = head;
+            while (curr != null) {
+                if (curr.key == key) {
+                    return curr;
+                }
+                curr = curr.next;
+            }
+
+            return null;
+        }
+
         boolean search(String key) {
             if (head == null) {
                 return false;
@@ -111,7 +141,7 @@ public class HashTable {
 
             LinkedListNode curr = head;
             while (curr != null) {
-                if (curr.data == key) {
+                if (curr.key == key) {
                     return true;
                 }
                 curr = curr.next;
@@ -128,42 +158,48 @@ public class HashTable {
         String[] values = new String[] { "aa", "bb", "cc", "dd", "ee", "ff", "gg" };
 
         LinkedList llist = new LinkedList();
+        int i = 0;
         for (String value : values) {
-            llist.add(value);
+            llist.add(value, i);
+            i++;
         }
 
         for (String value : values) {
-            System.out.println(llist.search(value));
+            System.out.println(value);
+            System.out.println(llist.get(value).data);
         }
 
         System.out.println(llist.search("aa"));
 
-        int i;
         for (i = 0; i <= values.length; i++) {
-            System.out.println(llist.get(i).data);
+            System.out.println(llist.nodeAtIndex(i).data);
         }
 
         i++;
 
         // NULL
-        System.out.println(llist.get(i));
+        System.out.println(llist.nodeAtIndex(i));
 
         // List of west coast (best coast) states
         String[] states = new String[] { "california", "oregon", "washington", "nevada", "montana", "idaho" };
 
         HashTable ht = new HashTable(5);
+
+        i = 0;
+
         for (String state : states) {
-            ht.insert(state);
+            ht.insert(state, i);
+            i++;
         }
 
         for (i = 0; i < states.length; i++) {
-            System.out.println(String.format("Index of '%s' in hash table: %d", states[i], ht.indexOf(states[i])));
+            System.out.println(String.format("Data for key '%s' in hash table: %d", states[i], ht.get(states[i])));
         }
 
         i++;
 
-        // -1
-        System.out.println(ht.indexOf("new jersey"));
-        System.out.println(ht.indexOf("new york"));
+        // NullPointerException: does not exist in Hash Table
+        System.out.println(ht.get("new jersey"));
+        System.out.println(ht.get("new york"));
     }
 }
