@@ -199,14 +199,14 @@ public class GraphDS {
             System.out.println(String.format("parentMap: %s", parentMap.toString()));
         }
 
-        private void tsUtil(Vertex curr, Queue<Vertex> sGraph, Map<Vertex, Boolean> cycleDetector) {
+        private void tsUtil(Vertex curr, Stack<Vertex> stack, Map<Vertex, Boolean> cycleDetector) {
             if (cycleDetector != null) {
                 if (cycleDetector.containsKey(curr) && cycleDetector.get(curr)) {
                     System.out.println("Cycle Detected! Not a DAG");
                     return;
                 }
             }
-            if (sGraph.contains(curr)) {
+            if (stack.contains(curr)) {
                 return;
             }
 
@@ -214,24 +214,30 @@ public class GraphDS {
                 cycleDetector.put(curr, true);
             }
 
-            sGraph.add(curr);
-
             for (Vertex n : curr.getNeighbors()) {
-                tsUtil(n, sGraph, cycleDetector);
+                tsUtil(n, stack, cycleDetector);
             }
 
             if (cycleDetector != null) {
                 cycleDetector.put(curr, false);
             }
+
+            stack.add(curr);
         }
 
         public void topologicalSort(boolean detectCycle) {
             System.out.println("tsort()");
             Map<Vertex, Boolean> cycleDetector = detectCycle ? new HashMap<>() : null;
-            Queue<Vertex> sortedGraph = new LinkedList<>();
+            Stack<Vertex> stack = new Stack<>();
 
             for (Vertex v : vertices) {
-                tsUtil(v, sortedGraph, cycleDetector);
+                tsUtil(v, stack, cycleDetector);
+            }
+
+            Queue<Vertex> sortedGraph = new LinkedList<Vertex>();
+
+            while (!stack.isEmpty()) {
+                sortedGraph.add(stack.pop());
             }
 
             System.out.println("Sorted Graph");
